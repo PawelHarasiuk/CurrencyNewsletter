@@ -12,7 +12,7 @@ type MailSender struct {
 	SmtpPort string
 }
 
-func (ms *MailSender) SendMessage(subject, emailBody string, to []string) {
+func (ms MailSender) SendMessage(subject, emailBody string, to []string) {
 	message := []byte(subject + "\n" + emailBody)
 	auth := smtp.PlainAuth("", ms.From, ms.Passwd, ms.SmtpHost)
 	err := smtp.SendMail(ms.SmtpHost+":"+ms.SmtpPort, auth, ms.From, to, message)
