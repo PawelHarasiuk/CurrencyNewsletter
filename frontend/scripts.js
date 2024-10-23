@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let action = event.submitter.value;
         let method = action === "create" ? "POST" : "DELETE";
-        let feedback = document.getElementById('feedback');
 
         fetch(url + action, {
             method: method,
