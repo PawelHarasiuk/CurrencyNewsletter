@@ -16,7 +16,7 @@ This project allows users to submit or remove their email addresses through a fr
 - JavaScript/HTML/CSS - basic frontend 
 
 ## Architecture
-Here is architecture of the system I have designed. It not perfect and maybe some services I used not how it meant to be used, but I enjoyed the proccess of designing and learning experience.
+Here is architecture of the system I have designed. It not perfect and maybe some services I used not how they supposed to be used, but I enjoyed the proccess of designing and learning experience, and developed deeper understanding of used services.
 
 <br>
 <img width="479" alt="Zrzut ekranu 2024-10-23 o 19 03 36" src="https://github.com/user-attachments/assets/4aad11dd-e4c0-42de-a308-ba9d3ac072a5">
