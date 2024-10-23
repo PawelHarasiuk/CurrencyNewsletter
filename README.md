@@ -1,7 +1,7 @@
 # Currency Newsletter
 You can access website here: <a href="http://frontent-bucket.s3-website.eu-central-1.amazonaws.com">Newsletter</a>
-## Overview
 
+## Overview
 This project allows users to submit or remove their email addresses through a frontend web app. Once subscribed, users receive a daily email with the latest currency exchange rates, fetched from an external API. The email is sent automatically every 24 hours.
 
 ## Technologies
@@ -14,12 +14,6 @@ This project allows users to submit or remove their email addresses through a fr
   - API Gateway - triggering request from frontend to Lambda
   - S3 - used to host static website and for storing file with emails
 - JavaScript/HTML/CSS - basic frontend 
-
-## To add / To improve
-- better frontend - make it prettier and maybe add logging
-- add feedback to user after submit
-- choosing currencies to follow instead of fixed rate of USD and EUR
-- database instead of file on s3 (I am aware that using file as db is not smart)
 
 ## Architecture
 Here is architecture of the system I have designed. It not perfect and maybe some services I used not how it meant to be used, but I enjoyed the proccess of designing and learning experience.
@@ -34,3 +28,9 @@ Here is example email received by newsletter
 <br>
 <img width="479" alt="Zrzut ekranu 2024-10-23 o 19 02 37" src="https://github.com/user-attachments/assets/fa250932-7d20-426d-8329-943d44c0ea3c">
 <br>
+
+## To add / To improve
+- better frontend - make it prettier and maybe add authentication
+- add feedback to user after submit
+- choosing currencies to follow instead of fixed rate of USD and EUR
+- database instead of file on s3 (I am aware that using file as db is not smart)
