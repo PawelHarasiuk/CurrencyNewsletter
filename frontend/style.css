@@ -10,6 +10,22 @@ h1 {
     text-align: center;
 }
 
+section#about {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+section#about p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
 form#emailForm {
     max-width: 400px;
     margin: 0 auto;
