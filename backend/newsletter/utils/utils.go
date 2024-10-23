@@ -13,11 +13,6 @@ var (
 	url    = "https://api.apilayer.com/exchangerates_data/"
 )
 
-func GetSymbols() string {
-	symbols := requestSymbols()
-	return symbols
-}
-
 func GetConvertedValue(to, from, amount string) float64 {
 	data, err := requestData(to, from, amount)
 	if err != nil {
@@ -43,32 +38,6 @@ func GetRate(to, from string) float64 {
 		return 0
 	}
 	return result
-}
-
-func requestSymbols() string {
-	reqUrl := fmt.Sprintf("%ssymbols", url)
-	req, err := http.NewRequest("GET", reqUrl, nil)
-	client := &http.Client{}
-	if err != nil {
-		fmt.Println(err.Error())
-		return ""
-	}
-
-	req.Header.Set("apikey", apikey)
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err.Error())
-		return ""
-	}
-
-	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println(err.Error())
-		return ""
-	}
-
-	return string(body)
 }
 
 func requestData(to, from, amount string) (map[string]interface{}, error) {
@@ -100,24 +69,4 @@ func requestData(to, from, amount string) (map[string]interface{}, error) {
 		return nil, err
 	}
 	return data, nil
-}
-
-func isSymbol(symbol string, symbolsString string) bool {
-	data := make(map[string]interface{})
-	err := json.Unmarshal([]byte(symbolsString), &data)
-	if err != nil {
-		fmt.Println(err.Error())
-		return false
-	}
-	symbols, ok := data["symbols"].(map[string]interface{})
-	if !ok {
-		fmt.Println("Error retrieving symbols")
-		return false
-	}
-
-	if _, ok = symbols[symbol]; ok {
-		return true
-	} else {
-		return false
-	}
 }

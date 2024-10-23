@@ -5,7 +5,6 @@ import (
 	"bufio"
 	"context"
 	"errors"
-	"fmt"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
@@ -26,6 +25,10 @@ type MyEvent struct {
 	Mess string `json:"mess"`
 }
 
+func main() {
+	lambda.Start(handler)
+}
+
 func handler(ctx context.Context, event MyEvent) {
 	ms := emailHandler.MailSender{
 		From:     from,
@@ -33,21 +36,13 @@ func handler(ctx context.Context, event MyEvent) {
 		SmtpHost: smtpHost,
 		SmtpPort: smtpPort,
 	}
-	message := "Hello"
 
-	subject := "Subject: Test Email"
-	emailBody := fmt.Sprintf("This is the email body: %v", message)
 	to, err := ReadMailsFromS3()
 
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(to)
-	ms.SendMessage(subject, emailBody, to)
-}
-
-func main() {
-	lambda.Start(handler)
+	ms.SendEmails(to)
 }
 
 func ReadMailsFromS3() ([]string, error) {
