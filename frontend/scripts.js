@@ -19,8 +19,14 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify(jsonData)
         })
-            .then(r => r.text())
-            .then(data => console.log(data))
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then(data => alert("Your request was successfully send"))
             .catch(error => {
                 console.error('Fetch error:', error);
             });
