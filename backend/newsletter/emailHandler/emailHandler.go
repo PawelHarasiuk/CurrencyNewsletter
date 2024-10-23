@@ -27,9 +27,9 @@ func (ms MailSender) SendEmails(to []string) {
 }
 
 func createMessage() string {
-	currencyOne := "USD"
-	currencyTwo := "EUR"
-	takeRate := utils.GetRate(currencyOne, currencyTwo)
+	currencyTwo := "USD"
+	currencyOne := "EUR"
+	takeRate := utils.GetRate(currencyTwo, currencyOne)
 
 	message := fmt.Sprintf(
 		"Hello,\n\n"+

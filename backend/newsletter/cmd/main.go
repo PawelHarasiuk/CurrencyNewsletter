@@ -5,7 +5,6 @@ import (
 	"bufio"
 	"context"
 	"errors"
-	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
@@ -26,10 +25,11 @@ type MyEvent struct {
 }
 
 func main() {
-	lambda.Start(handler)
+	//lambda.Start(handler)
+	handler()
 }
 
-func handler(ctx context.Context, event MyEvent) {
+func handler() {
 	ms := emailHandler.MailSender{
 		From:     from,
 		Passwd:   passwd,
