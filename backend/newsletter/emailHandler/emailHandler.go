@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log/slog"
 	"net/smtp"
-	"time"
 )
 
 type MailSender struct {
@@ -31,14 +30,12 @@ func createMessage() string {
 	currencyOne := "USD"
 	currencyTwo := "EUR"
 	takeRate := utils.GetRate(currencyOne, currencyTwo)
-	currentDate := time.Now().Format("January 02, 2006")
 
 	message := fmt.Sprintf(
 		"Hello,\n\n"+
 			"We are excited to share the latest updates on our transaction platform!\n\n"+
-			"As of %s, the take rate between %s and %s is %.3f.\n\n"+
+			"Rate between %s and %s is %.3f.\n\n"+
 			"Thank you for choosing our services. Stay tuned for more updates.\n\n",
-		currentDate, currencyOne, currencyTwo, takeRate)
-
+		currencyOne, currencyTwo, takeRate)
 	return message
 }
