@@ -15,10 +15,18 @@ type Message struct {
 }
 
 func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	if event.HTTPMethod == http.MethodOptions {
+		return events.APIGatewayProxyResponse{
+			StatusCode: http.StatusNoContent,
+			Headers:    CORSHeaders(),
+		}, nil
+	}
+
 	if event.Body == "" {
 		fmt.Println("Request body is empty")
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusBadRequest,
+			Headers:    CORSHeaders(),
 			Body:       "Request body cannot be empty",
 		}, nil
 	}
@@ -28,6 +36,7 @@ func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.A
 	if err != nil {
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusInternalServerError,
+			Headers:    CORSHeaders(),
 			Body:       "Error unmarshalling json",
 		}, err
 	}
@@ -37,6 +46,7 @@ func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.A
 		if err != nil {
 			return events.APIGatewayProxyResponse{
 				StatusCode: http.StatusNotFound,
+				Headers:    CORSHeaders(),
 				Body:       "Incorrect email",
 			}, err
 		}
@@ -45,19 +55,30 @@ func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.A
 		if err != nil {
 			return events.APIGatewayProxyResponse{
 				StatusCode: http.StatusNotFound,
+				Headers:    CORSHeaders(),
 				Body:       "Incorrect email",
 			}, err
 		}
 	} else {
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusInternalServerError,
+			Headers:    CORSHeaders(),
 			Body:       "Wrong endpoint",
 		}, err
 	}
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusOK,
+		Headers:    CORSHeaders(),
 		Body:       "Success",
-	}, err
+	}, nil
+}
+
+func CORSHeaders() map[string]string {
+	return map[string]string{
+		"Access-Control-Allow-Origin":  "*",
+		"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+		"Access-Control-Allow-Headers": "Content-Type, Authorization",
+	}
 }
 
 func main() {
