@@ -30,7 +30,7 @@ Here is example email received by newsletter
 <br>
 
 ## To add / To improve
-- better frontend - make it prettier and maybe add authentication
+- better frontend - make it prettier and maybe add authentication or rewrite frontend in React
 - add feedback to user after submit
 - choosing currencies to follow instead of fixed rate of USD and EUR
 - database instead of file on s3 (I am aware that using file as db is not smart)
