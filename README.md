@@ -1,5 +1,5 @@
 # Currency Newsletter
-You can access website here: <a href="http://frontent-bucket.s3-website.eu-central-1.amazonaws.com">Newsletter</a>
+## (It's turned off) You can access website here: <a href="http://frontent-bucket.s3-website.eu-central-1.amazonaws.com">Newsletter</a>
 
 ## Overview
 This project allows users to submit or remove their email addresses through a frontend web app. Once subscribed, users receive a daily email with the latest currency exchange rates, fetched from an external API. The email is sent automatically every 24 hours.
